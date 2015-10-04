@@ -1,6 +1,7 @@
 package com.kartikn.powermonitor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,8 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
@@ -110,7 +113,32 @@ public class MainActivity extends Activity {
         series_level_reading.setColor(Color.RED);
         graph2.addSeries(series_level_reading);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
 
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                    .setTitle("About Power Monitor")
+                    .setMessage("This app gives a view into the power usage of your android device. One unique feature is the graph of charging done versus time taken \n \n " +
+                            "You can find more apps from me at https://play.google.com/store/apps/developer?id=Kartik+Narayanan \n \n" +
+                        "Please mail me your feedback at kartik.narayanan@gmail.com");
+            builder.create().show();
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
 

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Power Monitor</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">About</string>
     <string name="updates">This app gives a view into the power usage of your android device. One unique feature is the graph of charging done versus time taken.</string>
     <string name="eula">Hello. Thank you for using my app. This is supposed to be an EULA. So here goes... \n
         I have created this app based on my knowledge of the android battery monitor class. So please use this app as a guidance and do not stake your life savings on it - I will not be responsible for any loss in any form. :-D</string>
