@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
@@ -21,7 +23,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 public class MainActivity extends Activity {
 
 
-
+    private AdView mAdView;
     private GraphView graph2;
     private LineGraphSeries<DataPoint> series_level_reading;
     private boolean runOnce = false;
@@ -112,6 +114,10 @@ public class MainActivity extends Activity {
         series_level_reading = new LineGraphSeries<>();
         series_level_reading.setColor(Color.RED);
         graph2.addSeries(series_level_reading);
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
