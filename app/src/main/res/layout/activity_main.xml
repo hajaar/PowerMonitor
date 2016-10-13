@@ -14,7 +14,7 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:layout_marginBottom="8dp"
         android:columnCount="3"
         android:rowCount="3"
@@ -241,7 +241,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Health" />
+                    android:text="Condition" />
 
                 <TextView
                     android:id="@+id/text_7"
@@ -308,7 +308,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Power" />
+                    android:text="Powered By" />
 
                 <TextView
                     android:id="@+id/text_9"
@@ -326,7 +326,7 @@
         android:id="@+id/card_view2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="4"
         android:layout_gravity="top"
         android:layout_marginBottom="8dp"
         card_view:cardBackgroundColor="#F0F4C3"

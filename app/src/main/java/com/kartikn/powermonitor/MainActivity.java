@@ -58,9 +58,9 @@ public class MainActivity extends Activity {
             switch(plugged) {
                 case 0:             plugged_text="Battery";
                     break;
-                case 1:             plugged_text="on AC";
+                case 1:             plugged_text="AC";
                     break;
-                case 2:             plugged_text="on USB";
+                case 2:             plugged_text="USB";
                     break;
                 case 4:             plugged_text="Wireless";
                     break;
