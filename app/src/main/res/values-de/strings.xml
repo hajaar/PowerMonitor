@@ -20,9 +20,6 @@
     <string name="discharging">Discharging</string>
     <string name="notcharging">Not Charging</string>
     <string name="fullycharged">Fully Charged</string>
-    <string name="graphtitle">Power Curve</string>
-    <string name="xaxis">Charge</string>
-    <string name="yaxis">Time</string>
 
 
 </resources>

@@ -1,7 +1,6 @@
 package com.kartikn.powermonitor;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -58,26 +57,34 @@ public class MainActivity extends Activity {
             text8.setText("" + (float) temperature / 10 + "C");
             String plugged_text="";
             switch(plugged) {
-                case 0:             plugged_text="Battery";
+                case 0:
+                    text9.setText(R.string.battery);
                     break;
-                case 1:             plugged_text="AC";
+                case 1:
+                    text9.setText(R.string.AC);
                     break;
-                case 2:             plugged_text="USB";
+                case 2:
+                    text9.setText(R.string.USB);
                     break;
-                case 4:             plugged_text="Wireless";
+                case 4:
+                    text9.setText(R.string.wireless);
                     break;
             }
-            text9.setText(plugged_text);
             switch(status) {
-                case 1:             text7.setText("Unknown");
+                case 1:
+                    text7.setText(R.string.unknown);
                     break;
-                case 2:             text7.setText("Charging");
+                case 2:
+                    text7.setText(R.string.charging);
                     break;
-                case 3:            text7.setText("Discharging");
+                case 3:
+                    text7.setText(R.string.discharging);
                     break;
-                case 4:             text7.setText("Not Charging");
+                case 4:
+                    text7.setText(R.string.notcharging);
                     break;
-                case 5:             text7.setText("Fully Charged");
+                case 5:
+                    text7.setText(R.string.fullycharged);
                     break;
             }
             Log.d("Current starting ", current_level +" : " + starting_level  );
@@ -99,8 +106,7 @@ public class MainActivity extends Activity {
         Bundle bundle = new Bundle();
         bundle.putString("app", "app is open");
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle);
-        new SimpleEula(this).show();
-        text1 = (TextView)findViewById(R.id.text_1);
+        text1 = (TextView) findViewById(R.id.text_1);
         text2 = (TextView)findViewById(R.id.text_2);
         text3 = (TextView)findViewById(R.id.text_3);
         text4 = (TextView)findViewById(R.id.text_4);
@@ -111,12 +117,12 @@ public class MainActivity extends Activity {
         text9 = (TextView)findViewById(R.id.text_9);
         this.registerReceiver(this.batteryInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         graph2 = (GraphView) findViewById(R.id.graph2);
-        graph2.setTitle("Charging Curve");
+        graph2.setTitle(getString(R.string.graphtitle));
         graph2.setTitleColor(Color.RED);
         GridLabelRenderer gridLabelRenderer = new GridLabelRenderer(graph2);
-        gridLabelRenderer.setHorizontalAxisTitle("Charge");
+        gridLabelRenderer.setHorizontalAxisTitle(getString(R.string.xaxis));
         gridLabelRenderer.setHorizontalAxisTitleColor(Color.RED);
-        gridLabelRenderer.setVerticalAxisTitle("Time(secs)");
+        gridLabelRenderer.setVerticalAxisTitle(getString(R.string.yaxis));
         gridLabelRenderer.setVerticalAxisTitleColor(Color.RED);
         series_level_reading = new LineGraphSeries<>();
         series_level_reading.setColor(Color.RED);
@@ -140,24 +146,15 @@ public class MainActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                    .setTitle("About Power Monitor")
-                    .setMessage("This app gives a view into the power usage of your android device. One unique feature is the graph of charging done versus time taken \n \n " +
-                            "You can find more apps from me at https://play.google.com/store/apps/developer?id=Kartik+Narayanan \n \n" +
-                        "Please mail me your feedback at kartik.narayanan@gmail.com");
-            builder.create().show();
 
-        }
 
         return super.onOptionsItemSelected(item);
     }
-    @Override
+ /*   @Override
     protected void onStop()
     {
         unregisterReceiver(batteryInfoReceiver);
         super.onStop();
-    }
+    }*/
 }
 
