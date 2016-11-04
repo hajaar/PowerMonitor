@@ -9,12 +9,14 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
@@ -22,7 +24,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class MainActivity extends Activity {
 
-
+    private FirebaseAnalytics mFirebaseAnalytics;
     private AdView mAdView;
     private GraphView graph2;
     private LineGraphSeries<DataPoint> series_level_reading;
@@ -78,11 +80,12 @@ public class MainActivity extends Activity {
                 case 5:             text7.setText("Fully Charged");
                     break;
             }
-
+            Log.d("Current starting ", current_level +" : " + starting_level  );
             if (current_level <scale) {
                 text3.setText(""+(System.currentTimeMillis()-starting_time)/1000+"secs");}
             if ((current_level-starting_level)>=1 && current_level < scale) {
                 series_level_reading.appendData(new DataPoint(current_level, (System.currentTimeMillis()- starting_time)/1000),false,100);
+                Log.d("Current starting time", current_level +" : " + starting_level + " : " + (System.currentTimeMillis()- starting_time)/1000 );
                 starting_level = current_level;
             }
         }
@@ -92,6 +95,10 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle bundle = new Bundle();
+        bundle.putString("app", "app is open");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle);
         new SimpleEula(this).show();
         text1 = (TextView)findViewById(R.id.text_1);
         text2 = (TextView)findViewById(R.id.text_2);
@@ -145,6 +152,12 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onStop()
+    {
+        unregisterReceiver(batteryInfoReceiver);
+        super.onStop();
     }
 }
 

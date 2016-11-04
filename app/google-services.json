@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "322751430631",
+    "firebase_url": "https://android-apps-88ee0.firebaseio.com",
+    "project_id": "android-apps-88ee0",
+    "storage_bucket": "android-apps-88ee0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322751430631:android:55ff3ef43a1bb1d6",
+        "android_client_info": {
+          "package_name": "com.skva.mathsplayforkids"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322751430631-qpfr35lu7nbgjd0r9fu0lgjgdoniokv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-7mac2Gi3QanzPDjj1NY2qVhN2-VTwdw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322751430631:android:2f7be5c2a18db290",
+        "android_client_info": {
+          "package_name": "com.kartikn.powermonitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322751430631-qpfr35lu7nbgjd0r9fu0lgjgdoniokv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-7mac2Gi3QanzPDjj1NY2qVhN2-VTwdw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
