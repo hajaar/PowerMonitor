@@ -89,7 +89,8 @@ public class MainActivity extends Activity {
             }
             Log.d("Current starting ", current_level +" : " + starting_level  );
             if (current_level <scale) {
-                text3.setText(""+(System.currentTimeMillis()-starting_time)/1000+"secs");}
+                text3.setText("" + (System.currentTimeMillis() - starting_time) / 1000);
+            }
             if ((current_level-starting_level)>=1 && current_level < scale) {
                 series_level_reading.appendData(new DataPoint(current_level, (System.currentTimeMillis()- starting_time)/1000),false,100);
                 Log.d("Current starting time", current_level +" : " + starting_level + " : " + (System.currentTimeMillis()- starting_time)/1000 );
