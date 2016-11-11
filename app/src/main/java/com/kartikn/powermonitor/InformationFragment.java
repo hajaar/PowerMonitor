@@ -1,7 +1,6 @@
 package com.kartikn.powermonitor;
 
 
-import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,12 +8,15 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
@@ -135,6 +137,12 @@ public class InformationFragment extends Fragment {
         series_level_reading = new LineGraphSeries<>();
         series_level_reading.setColor(Color.RED);
         graph2.addSeries(series_level_reading);
+        AdView mAdView;
+        super.onActivityCreated(savedInstanceState);
+        mAdView = (AdView) getActivity().findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
     }
 
 

@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-    <style name="AppTheme" parent="brownindigo">
-        <item name="android:colorPrimary">#795548</item>
-        <item name="android:colorPrimaryDark">#5D4037</item>
-        <item name="android:colorAccent">#CDDC39</item>
-        <item name="android:textColorPrimary">#212121</item>
-        <item name="android:textColorSecondary">#727272</item>
-        <item name="android:divider">#B6B6B6</item>
+
+    <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
+        <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
     </style>
+
 </resources>
