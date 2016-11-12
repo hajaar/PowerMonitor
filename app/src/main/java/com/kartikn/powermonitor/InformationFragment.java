@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
  */
 public class InformationFragment extends Fragment {
 
+
     private GraphView graph2;
     private LineGraphSeries<DataPoint> series_level_reading;
     private boolean runOnce = false;
@@ -41,7 +43,14 @@ public class InformationFragment extends Fragment {
                 starting_level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
                 starting_time = System.currentTimeMillis();
                 scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, 0);
+
                 series_level_reading.appendData(new DataPoint(starting_level, 0), false, 100);
+                HistoryDataSource datasource = new HistoryDataSource(getActivity());
+                datasource.open();
+                String datetime = DateFormat.format("dd-MMM-yyyy hh:mm:ss", System.currentTimeMillis()).toString();
+                Log.d("InformationFragment", "onReceive: " + starting_level + " " + datetime);
+                datasource.createHistory(starting_level, datetime);
+                datasource.close();
                 runOnce = true;
             }
             temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
@@ -143,6 +152,7 @@ public class InformationFragment extends Fragment {
         AdRequest adRequest = new AdRequest.Builder()
                 .build();
         mAdView.loadAd(adRequest);
+
     }
 
 

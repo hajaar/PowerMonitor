@@ -37,21 +37,18 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        InformationFragment informationFragment = new InformationFragment();
+        adapter.addFragment(informationFragment, "This Device");
+        adapter.addFragment(new HistoryFragment(), "History");
+        viewPager.setAdapter(adapter);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-
-
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new InformationFragment(), "This Device");
-        adapter.addFragment(new InformationFragment(), "History");
-        viewPager.setAdapter(adapter);
-    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -104,5 +101,7 @@ public class MainActivity extends AppCompatActivity {
          return mFragmentTitleList.get(position);
      }
  }
+
+
 }
 
