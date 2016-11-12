@@ -57,7 +57,7 @@ public class HistoryFragment extends Fragment {
         datasource = new HistoryDataSource(getActivity());
         datasource.open();
 
-        historyList = datasource.getAllHistory();
+        historyList = datasource.getAllReverseHistory();
 
         RecyclerView recyclerView;
         recyclerView = (RecyclerView) getActivity().findViewById(R.id.history_recycler_view);
@@ -69,6 +69,7 @@ public class HistoryFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+
     }
 
     @Override

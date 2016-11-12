@@ -9,6 +9,8 @@ public class History {
     private long id;
     private int capacity;
     private String datetime;
+    private int startingcharge;
+    private String power;
 
     public long getId() {
         return id;
@@ -34,5 +36,19 @@ public class History {
         this.datetime = datetime;
     }
 
+    public int getStartingcharge() {
+        return startingcharge;
+    }
 
+    public void setStartingcharge(int startingcharge) {
+        this.startingcharge = startingcharge;
+    }
+
+    public String getPower() {
+        return power;
+    }
+
+    public void setPower(String power) {
+        this.power = power;
+    }
 }

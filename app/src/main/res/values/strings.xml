@@ -23,9 +23,8 @@
     <string name="graphtitle">Power Curve</string>
     <string name="xaxis">Charge</string>
     <string name="yaxis">Time</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="datetime">Date</string>
+    <string name="startingcharge">Starting Charge</string>
 
 
 </resources>

@@ -45,11 +45,13 @@ public class InformationFragment extends Fragment {
                 scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, 0);
 
                 series_level_reading.appendData(new DataPoint(starting_level, 0), false, 100);
+                current_level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
+                plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0);
                 HistoryDataSource datasource = new HistoryDataSource(getActivity());
                 datasource.open();
                 String datetime = DateFormat.format("dd-MMM-yyyy hh:mm:ss", System.currentTimeMillis()).toString();
                 Log.d("InformationFragment", "onReceive: " + starting_level + " " + datetime);
-                datasource.createHistory(starting_level, datetime);
+                datasource.createHistory(scale, datetime, current_level, whatIsPlugged(plugged));
                 datasource.close();
                 runOnce = true;
             }
@@ -68,20 +70,7 @@ public class InformationFragment extends Fragment {
             text6.setText("" + (float) voltage / 1000 + "mV");
             text8.setText("" + (float) temperature / 10 + "C");
             String plugged_text = "";
-            switch (plugged) {
-                case 0:
-                    text9.setText(R.string.battery);
-                    break;
-                case 1:
-                    text9.setText(R.string.AC);
-                    break;
-                case 2:
-                    text9.setText(R.string.USB);
-                    break;
-                case 4:
-                    text9.setText(R.string.wireless);
-                    break;
-            }
+            text9.setText(whatIsPlugged(plugged));
             switch (status) {
                 case 1:
                     text7.setText(R.string.unknown);
@@ -147,12 +136,26 @@ public class InformationFragment extends Fragment {
         series_level_reading.setColor(Color.RED);
         graph2.addSeries(series_level_reading);
         AdView mAdView;
-        super.onActivityCreated(savedInstanceState);
         mAdView = (AdView) getActivity().findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
                 .build();
         mAdView.loadAd(adRequest);
 
+    }
+
+    private String whatIsPlugged(int i) {
+        switch (i) {
+            case 0:
+                return getContext().getString(R.string.battery);
+
+            case 1:
+                return getContext().getString(R.string.AC);
+            case 2:
+                return getContext().getString(R.string.USB);
+            case 4:
+                return getContext().getString(R.string.wireless);
+        }
+        return "unknown";
     }
 
 

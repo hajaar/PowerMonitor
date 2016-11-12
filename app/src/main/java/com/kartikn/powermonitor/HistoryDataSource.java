@@ -19,7 +19,7 @@ public class HistoryDataSource {
     private SQLiteDatabase database;
     private HistoryHelper dbHelper;
     private String[] allColumns = {HistoryHelper.COLUMN_ID,
-            HistoryHelper.COLUMN_CAPACITY, HistoryHelper.COLUMN_DATETIME};
+            HistoryHelper.COLUMN_CAPACITY, HistoryHelper.COLUMN_DATETIME, HistoryHelper.COLUMN_STARTINGCHARGE, HistoryHelper.COLUMN_POWER};
 
     public HistoryDataSource(Context context) {
         dbHelper = new HistoryHelper(context);
@@ -33,10 +33,12 @@ public class HistoryDataSource {
         dbHelper.close();
     }
 
-    public History createHistory(int capacity, String datetime) {
+    public History createHistory(int capacity, String datetime, int startingcharge, String power) {
         ContentValues values = new ContentValues();
         values.put(HistoryHelper.COLUMN_CAPACITY, capacity);
         values.put(HistoryHelper.COLUMN_DATETIME, datetime);
+        values.put(HistoryHelper.COLUMN_STARTINGCHARGE, startingcharge);
+        values.put(HistoryHelper.COLUMN_POWER, power);
         //Log.d("HistoryDataSource", "createHistory " + capacity + " "+ datetime);
         long insertId = database.insert(HistoryHelper.TABLE_HISTORY, null,
                 values);
@@ -60,11 +62,25 @@ public class HistoryDataSource {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             History history = cursorToHistory(cursor);
-            // Log.d("HistoryDataSource", "getAllHistory: " + history.getId()+" "+history.getCapacity()+" "+history.getDatetime());
             historylist.add(history);
             cursor.moveToNext();
         }
-        // make sure to close the cursor
+        cursor.close();
+        return historylist;
+    }
+
+    public List<History> getAllReverseHistory() {
+        List<History> historylist = new ArrayList<>();
+
+        Cursor cursor = database.query(HistoryHelper.TABLE_HISTORY,
+                allColumns, null, null, null, null, null);
+
+        cursor.moveToLast();
+        while (!cursor.isBeforeFirst()) {
+            History history = cursorToHistory(cursor);
+            historylist.add(history);
+            cursor.moveToPrevious();
+        }
         cursor.close();
         return historylist;
     }
@@ -74,7 +90,9 @@ public class HistoryDataSource {
         history.setId(cursor.getLong(0));
         history.setCapacity(cursor.getInt(1));
         history.setDatetime(cursor.getString(2));
-        Log.d("HistoryDataSource", "cursorToHistory: " + history.getId() + " " + history.getCapacity() + " " + history.getDatetime());
+        history.setStartingcharge(cursor.getInt(3));
+        history.setPower(cursor.getString(4));
+        Log.d("HistoryDataSource", "cursorToHistory: " + history.getId() + " " + history.getCapacity() + " " + history.getDatetime() + " " + history.getStartingcharge() + " " + history.getPower());
         return history;
     }
 }

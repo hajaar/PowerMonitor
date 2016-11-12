@@ -27,9 +27,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         History history = historyList.get(position);
-        holder.history_id.setText(history.getId() + "");
         holder.history_capacity.setText(history.getCapacity() + "");
         holder.history_datetime.setText(history.getDatetime());
+        holder.history_startingcharge.setText(history.getStartingcharge() + "");
+        holder.history_power.setText(history.getPower());
     }
 
     @Override
@@ -38,13 +39,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView history_id, history_capacity, history_datetime;
+        public TextView history_id, history_capacity, history_datetime, history_startingcharge, history_power;
 
         public MyViewHolder(View view) {
             super(view);
-            history_id = (TextView) view.findViewById(R.id.history_id);
+
             history_capacity = (TextView) view.findViewById(R.id.history_capacity);
             history_datetime = (TextView) view.findViewById(R.id.history_date);
+            history_startingcharge = (TextView) view.findViewById(R.id.history_startingcharge);
+            history_power = (TextView) view.findViewById(R.id.history_power);
         }
     }
 }
